@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MASS Raising Kids Quiz</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fafb;
+      color: #1f2937;
+      text-align: center;
+      padding: 40px;
+    }
+    h2 {
+      font-size: 40px;
+      color: #2563eb;
+      margin-bottom: 20px;
+    }
+    form {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin: 15px 0;
+      font-size: 18px;
+    }
+    input[type="text"], input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: #1e40af;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Knowledge Quiz</h2>
+  <form action="https://formspree.io/f/mnneodwg" method="POST">
+    <label>
+      Full Name *
+      <input type="text" name="name" required>
+    </label>
+
+    <label>
+      Email *
+      <input type="email" name="email" required>
+    </label>
+
+    <hr>
+
+    <p><strong>1. What is the mission of MASS Raising Kids?</strong></p>
+    <label><input type="radio" name="q1" value="Education & Support" required> Education & Support</label>
+    <label><input type="radio" name="q1" value="Profit"> Profit</label>
+    <label><input type="radio" name="q1" value="Politics"> Politics</label>
+
+    <p><strong>2. Who can join the program?</strong></p>
+    <label><input type="radio" name="q2" value="Anyone 5–105" required> Anyone 5–105</label>
+    <label><input type="radio" name="q2" value="Only Kids"> Only Kids</label>
+    <label><input type="radio" name="q2" value="Only Adults"> Only Adults</label>
+
+    <p><strong>3. Which skills are provided?</strong></p>
+    <label><input type="radio" name="q3" value="LSRW" required> LSRW</label>
+    <label><input type="radio" name="q3" value="Sports"> Sports</label>
+    <label><input type="radio" name="q3" value="Driving"> Driving</label>
+
+    <input type="hidden" name="form_type" value="MCQ Quiz – MASS Raising Kids">
+
+    <button type="submit" class="btn">Submit MCQ Form</button>
+     <!-- FINAL RESULT -->
+     <div id="finalResult" style="display:none; margin-top:30px;" class="quiz-result">
+        <h3>Final Result</h3>
+        <p id="scoreText"></p>
+        <p id="statusText"></p>
+    </div>
+
+  </form>
+
+</body>
+<script>
+
+
+
+/* ===============================
+   MASS RAISING KIDS – MCQ QUIZ
+   RESULT SHOW ON PAGE
+================================ */
+
+
+const quizQuestions = [
+  {
+    q: "What is the mission of MASS Raising Kids?",
+    options: ["Profit", "Education & support", "Politics", "Entertainment"],
+    answer: 1
+  },
+  {
+    q: "Who can apply for this program?",
+    options: ["Only kids", "Only adults", "Anyone 5 to 105", "Only teachers"],
+    answer: 2
+  },
+  {
+    q: "Which skills are taught?",
+    options: ["Driving", "Cooking", "LSRW skills", "Sports"],
+    answer: 2
+  },
+  {
+    q: "Which group is supported?",
+    options: ["Corporate staff", "Children & needy", "Celebrities", "Tourists"],
+    answer: 1
+  },
+  {
+    q: "Mode of teaching includes?",
+    options: ["Only classroom", "Zoom & online", "Only offline", "Only home visits"],
+    answer: 1
+  },
+  {
+    q: "Top priority age group?",
+    options: ["1–4", "5–20", "50–80", "80+"],
+    answer: 1
+  },
+  {
+    q: "Support group age?",
+    options: ["10–15", "18–25", "35–40", "60–70"],
+    answer: 1
+  },
+  {
+    q: "Who manages budget & accounting?",
+    options: ["Public", "Volunteers", "AR Rahman Tax & SAMrbc", "Students"],
+    answer: 2
+  },
+  {
+    q: "Project focus?",
+    options: ["Profit", "Social impact", "Politics", "Marketing"],
+    answer: 1
+  },
+  {
+    q: "Languages supported include?",
+    options: ["Only English", "Tamil coordination", "Only Hindi", "Only Urdu"],
+    answer: 1
+  }
+];
+
+document.addEventListener("DOMContentLoaded", () => {
+  const quizForm = document.getElementById("quizForm");
+  const quizResults = document.getElementById("quizResults");
+
+  if (!quizForm) return;
+
+  // Render questions
+  quizQuestions.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.className = "quiz-question";
+    div.style.marginBottom = "20px";
+
+    let html = `<p><strong>Q${index + 1}. ${item.q}</strong></p>`;
+
+    item.options.forEach((opt, i) => {
+      html += `
+        <label style="display:block; margin-left:15px;">
+          <input type="radio" name="q${index}" value="${i}" required>
+          ${opt}
+        </label>
+      `;
+    });
+
+    div.innerHTML = html;
+    quizForm.appendChild(div);
+  });
+
+  // Submit handler
+  quizForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    let score = 0;
+
+    quizQuestions.forEach((item, index) => {
+      const selected = document.querySelector(`input[name="q${index}"]:checked`);
+      if (selected && Number(selected.value) === item.answer) {
+        score++;
+      }
+    });
+
+    const percentage = Math.round((score / quizQuestions.length) * 100);
+
+    quizResults.style.display = "block";
+    quizResults.innerHTML = `
+      <h3>Quiz Result</h3>
+      <p><strong>Score: ${score} / ${quizQuestions.length}</strong></p>
+      <p><strong>Percentage: ${percentage}%</strong></p>
+      <p>
+        ${
+          percentage >= 70
+            ? "🎉 Excellent! You understand our mission very well."
+            : "❤️ Thank you for participating. Keep learning!"
+        }
+      </p>
+    `;
+
+    quizResults.scrollIntoView({ behavior: "smooth" });
+  });
+});
+
+// Open MCQ Quiz Form
+function openQuiz() {
+  const form = document.getElementById("mcqForm");
+  if (form) {
+      form.style.display = "block";
+      form.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
+document.getElementById("mcqForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  // Correct answers
+  const answers = {
+      q1: "Education & Support",
+      q2: "Anyone 5–105",
+      q3: "LSRW"
+  };
+
+  let score = 0;
+  let total = Object.keys(answers).length;
+
+  for (let q in answers) {
+      const selected = document.querySelector(`input[name="${q}"]:checked`);
+      if (selected && selected.value === answers[q]) {
+          score++;
+      }
+  }
+
+  let percentage = Math.round((score / total) * 100);
+
+  // Show result
+  document.getElementById("finalResult").style.display = "block";
+  document.getElementById("scoreText").innerHTML =
+      `Your Score: <strong>${score} / ${total}</strong> (${percentage}%)`;
+
+  document.getElementById("statusText").innerHTML =
+      percentage >= 60
+          ? "✅ <strong>PASS</strong> – Great job! You understand our mission."
+          : "❌ <strong>FAIL</strong> – Keep learning, you can try again.";
+
+  // Add hidden score fields for Formspree
+  let scoreInput = document.createElement("input");
+  scoreInput.type = "hidden";
+  scoreInput.name = "final_score";
+  scoreInput.value = `${score}/${total} (${percentage}%)`;
+
+  let statusInput = document.createElement("input");
+  statusInput.type = "hidden";
+  statusInput.name = "result_status";
+  statusInput.value = percentage >= 60 ? "PASS" : "FAIL";
+
+  this.appendChild(scoreInput);
+  this.appendChild(statusInput);
+
+  // Submit to Formspree AFTER showing result
+  setTimeout(() => {
+      this.submit();
+  }, 2000);
+});
+
+</script>
+</html>
+
