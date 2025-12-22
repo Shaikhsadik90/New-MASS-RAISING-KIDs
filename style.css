@@ -931,9 +931,9 @@
     font-weight: bold;
   }
   
+
+
   /* Footer */
-
-
  .footer {
     background: linear-gradient(135deg, #1d4f91, #0f2f5f);
     color: #ffffff;
@@ -962,6 +962,7 @@
 }
 
   
+
   /* Responsive Design */
   @media (max-width: 768px) {
     .nav-menu {
