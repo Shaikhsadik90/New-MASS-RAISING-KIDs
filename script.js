@@ -26,103 +26,113 @@ navLinks.forEach(link => {
     });
 });
 
+
+
 // Volunteer Form Handler
-const volunteerForm = document.getElementById('volunteerForm');
-if (volunteerForm) {
-    volunteerForm.addEventListener('submit', async function (e) {
-        e.preventDefault();
 
-        const formData = {
-            name: document.getElementById('volName').value,
-            email: document.getElementById('volEmail').value,
-            phone: document.getElementById('volPhone').value || null,
-            age: parseInt(document.getElementById('volAge').value),
-            languages: document.getElementById('volLanguages').value || null,
-            availability: document.querySelector('input[name="availability"]:checked').value,
-            message: document.getElementById('volMessage').value || null
-        };
 
-        try {
-            const response = await fetch('/api/volunteers', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
 
-            const messageDiv = document.getElementById('volunteerMessage');
+// const volunteerForm = document.getElementById('volunteerForm');
+// if (volunteerForm) {
+//     volunteerForm.addEventListener('submit', async function (e) {
+//         e.preventDefault();
 
-            if (response.ok) {
-                messageDiv.className = 'form-message success';
-                messageDiv.textContent = 'Thank you for applying! We will contact you soon.';
-                volunteerForm.reset();
-            } else {
-                const error = await response.json();
-                messageDiv.className = 'form-message error';
-                messageDiv.textContent = 'Error submitting form. Please try again.';
-            }
+//         const formData = {
+//             name: document.getElementById('volName').value,
+//             email: document.getElementById('volEmail').value,
+//             phone: document.getElementById('volPhone').value || null,
+//             age: parseInt(document.getElementById('volAge').value),
+//             languages: document.getElementById('volLanguages').value || null,
+//             availability: document.querySelector('input[name="availability"]:checked').value,
+//             message: document.getElementById('volMessage').value || null
+//         };
 
-            messageDiv.style.display = 'block';
-            setTimeout(() => {
-                messageDiv.style.display = 'none';
-            }, 5000);
-        } catch (error) {
-            console.error('Error:', error);
-            const messageDiv = document.getElementById('volunteerMessage');
-            messageDiv.className = 'form-message error';
-            messageDiv.textContent = 'Error submitting form. Please check your connection.';
-            messageDiv.style.display = 'block';
-        }
-    });
-}
+//         try {
+//             const response = await fetch('/api/volunteers', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'application/json'
+//                 },
+//                 body: JSON.stringify(formData)
+//             });
+
+//             const messageDiv = document.getElementById('volunteerMessage');
+
+//             if (response.ok) {
+//                 messageDiv.className = 'form-message success';
+//                 messageDiv.textContent = 'Thank you for applying! We will contact you soon.';
+//                 volunteerForm.reset();
+//             } else {
+//                 const error = await response.json();
+//                 messageDiv.className = 'form-message error';
+//                 messageDiv.textContent = 'Error submitting form. Please try again.';
+//             }
+
+//             messageDiv.style.display = 'block';
+//             setTimeout(() => {
+//                 messageDiv.style.display = 'none';
+//             }, 5000);
+//         } catch (error) {
+//             console.error('Error:', error);
+//             const messageDiv = document.getElementById('volunteerMessage');
+//             messageDiv.className = 'form-message error';
+//             messageDiv.textContent = 'Error submitting form. Please check your connection.';
+//             messageDiv.style.display = 'block';
+//         }
+        
+//     });
+// }
+
+
+
+
 
 // Contact Form Handler
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', async function (e) {
-        e.preventDefault();
+// const contactForm = document.getElementById('contactForm');
+// if (contactForm) {
+//     contactForm.addEventListener('submit', async function (e) {
+//         e.preventDefault();
 
-        const formData = {
-            name: document.getElementById('conName').value,
-            email: document.getElementById('conEmail').value,
-            subject: document.getElementById('conSubject').value || null,
-            message: document.getElementById('conMessage').value
-        };
+//         const formData = {
+//             name: document.getElementById('conName').value,
+//             email: document.getElementById('conEmail').value,
+//             subject: document.getElementById('conSubject').value || null,
+//             message: document.getElementById('conMessage').value
+//         };
 
-        try {
-            const response = await fetch('/api/contacts', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
+//         try {
+//             const response = await fetch('/api/contacts', {
+//                 method: 'POST',
+//                 headers: {
+//                     'Content-Type': 'application/json'
+//                 },
+//                 body: JSON.stringify(formData)
+//             });
 
-            const messageDiv = document.getElementById('contactMessage');
+//             const messageDiv = document.getElementById('contactMessage');
 
-            if (response.ok) {
-                messageDiv.className = 'form-message success';
-                messageDiv.textContent = 'Thank you! We received your message and will get back to you soon.';
-                contactForm.reset();
-            } else {
-                messageDiv.className = 'form-message error';
-                messageDiv.textContent = 'Error sending message. Please try again.';
-            }
+//             if (response.ok) {
+//                 messageDiv.className = 'form-message success';
+//                 messageDiv.textContent = 'Thank you! We received your message and will get back to you soon.';
+//                 contactForm.reset();
+//             } else {
+//                 messageDiv.className = 'form-message error';
+//                 messageDiv.textContent = 'Error sending message. Please try again.';
+//             }
 
-            messageDiv.style.display = 'block';
-            setTimeout(() => {
-                messageDiv.style.display = 'none';
-            }, 5000);
-        } catch (error) {
-            console.error('Error:', error);
-            const messageDiv = document.getElementById('contactMessage');
-            messageDiv.className = 'form-message error';
-            messageDiv.textContent = 'Error sending message. Please check your connection.';
-            messageDiv.style.display = 'block';
-        }
-    });
-}
+//             messageDiv.style.display = 'block';
+//             setTimeout(() => {
+//                 messageDiv.style.display = 'none';
+//             }, 5000);
+//         } catch (error) {
+//             console.error('Error:', error);
+//             const messageDiv = document.getElementById('contactMessage');
+//             messageDiv.className = 'form-message error';
+//             messageDiv.textContent = 'Error sending message. Please check your connection.';
+//             messageDiv.style.display = 'block';
+//         }
+//     });
+// }
 
 
 // Mobile responsive nav menu styling

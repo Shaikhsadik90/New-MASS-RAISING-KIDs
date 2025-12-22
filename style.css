@@ -793,6 +793,13 @@
 }
 
 /* Quiz Form */
+.quiz-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
 .quiz-form {
   background: #ffffff;
   padding: 25px;
@@ -925,17 +932,35 @@
   }
   
   /* Footer */
-  .footer {
-    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
-    color: var(--white);
-    padding: 30px 20px;
+
+
+ .footer {
+    background: linear-gradient(135deg, #1d4f91, #0f2f5f);
+    color: #ffffff;
+    padding: 40px 20px;
     text-align: center;
-  }
-  
-  .footer p {
-    margin-bottom: 10px;
-    opacity: 0.9;
-  }
+}
+
+.footer-content p {
+    margin: 8px 0;
+}
+
+.footer-title {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.footer-tagline {
+    font-size: 15px;
+    opacity: 0.95;
+}
+
+.footer-mission {
+    font-size: 14px;
+    opacity: 0.85;
+}
+
   
   /* Responsive Design */
   @media (max-width: 768px) {

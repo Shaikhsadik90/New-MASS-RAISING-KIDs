@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Global Branches | Mass Raising Kids</title>
+
+    <style>
+        :root {
+            --primary: #1d4f91;
+            --primary-light: #2c6fb2;
+            --secondary: #ff8c42;
+            --light: #f2f6fc;
+            --dark: #1e2b38;
+            --card: #ffffffee;
+            --radius: 18px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            background: var(--light);
+            overflow-x: hidden; /* horizontal scroll prevent */
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* TITLE SECTION */
+        .page-title {
+            width: 100%;
+            padding: 80px 20px;
+            background:
+                linear-gradient(135deg, rgba(43, 88, 118, 0.85), rgba(78, 67, 118, 0.85)),
+                url("map.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            margin-bottom: 40px;
+        }
+
+        .page-title h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .page-title p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        /* SECTIONS */
+        .country-section {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .section-heading {
+            font-size: 28px;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            width: 100%;
+        }
+
+        /* CARD */
+        .card {
+            background: var(--card);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: 0.3s ease;
+            backdrop-filter: blur(12px);
+            animation: fadeIn 0.7s ease;
+            max-width: 100%; /* prevent overflow */
+            box-sizing: border-box;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .flag {
+            width: 50px;
+            height: 32px;
+            border-radius: 5px;
+            margin-bottom: 12px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        .card h3 {
+            color: var(--dark);
+            font-size: 22px;
+            margin: 10px 0;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 7px 16px;
+            border-radius: 25px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        /* DONATION POLICY */
+        .donation-policy {
+            background: linear-gradient(135deg, #1b2a49, #1e3c72);
+            padding: 70px 25px;
+            text-align: center;
+            color: white;
+            border-radius: 40px 40px 0 0;
+            margin-top: 60px;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .donation-policy h2 {
+            font-size: 34px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .donation-policy p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: auto;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .partners {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .partner-card {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 18px 25px;
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            max-width: 310px;
+            border-radius: 18px;
+            text-decoration: none;
+            color: white;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-6px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .note {
+            margin-top: 25px;
+            font-size: 16px;
+            opacity: 0.85;
+            font-style: italic;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--primary);
+            text-align: center;
+            padding: 20px;
+            color: white;
+            margin-top: 40px;
+            font-size: 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* MOBILE FIXES */
+        @media (max-width: 768px) {
+            .page-title {
+                padding: 60px 15px;
+                background-size: contain;
+                background-position: top center;
+            }
+
+            .page-title h1 {
+                font-size: 2rem;
+            }
+
+            .page-title p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page-title {
+                padding: 40px 10px;
+                border-radius: 0 0 15px 15px;
+            }
+
+            .page-title h1 {
+                font-size: 1.6rem !important;
+            }
+
+            .page-title p {
+                font-size: 0.95rem !important;
+                max-width: 95%;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .card {
+                padding: 20px;
+                max-width: 100%;
+                margin: auto;
+            }
+
+            .donation-policy {
+                padding: 45px 15px;
+                border-radius: 25px 25px 0 0;
+            }
+
+            .partners {
+                flex-direction: column;
+                align-items: center;
+                gap: 18px;
+            }
+
+            .partner-card {
+                max-width: 100%;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <a href="index.html">⬅ Back to Home</a>
+    </div>
+
+    <div class="page-title">
+        <h1>Our Global Presence</h1>
+        <p>We are expanding internationally to support children & single mothers around the world.</p>
+    </div>
+
+    <div class="country-section">
+        <h2 class="section-heading">🌍 PRESENT COUNTRIES</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="https://flagcdn.com/ph.svg" class="flag">
+                <h3>Philippines</h3>
+                <span class="tag">Active Branch</span>
+            </div>
+            <div class="card">
+                <img src="https://flagcdn.com/ma.svg" class="flag">
+                <h3>Morocco</h3>
+                <span class="tag">Active Branch</span>
+            </div>
+            <div class="card">
+                <img src="https://flagcdn.com/pk.svg" class="flag">
+                <h3>Pakistan</h3>
+                <span class="tag">Active Branch</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="country-section">
+        <h2 class="section-heading">🚀 FUTURE EXPANSION</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="https://flagcdn.com/na.svg" class="flag">
+                <h3>Namibia</h3>
+                <span class="tag">Coming Soon</span>
+            </div>
+            <div class="card">
+                <img src="https://flagcdn.com/bw.svg" class="flag">
+                <h3>Botswana</h3>
+                <span class="tag">Coming Soon</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="donation-policy">
+        <h2>Donation Policy</h2>
+        <p>
+            We strictly DO NOT accept donations from the general public.<br>
+            All donations are only approved through the following authorized partners:
+        </p>
+        <div class="partners">
+            <a href="https://www.arrahmantax.com" target="_blank" class="partner-card">
+                <span class="icon">🏢</span>
+
+                <div>
+                    <h3> AR Rahman Tax</h3>
+                    <p>Official Donation Approval Partner</p>
+                </div>
+            </a>
+            <a href="https://samsrbc.ca" target="_blank" class="partner-card">
+                <span class="icon">🌍</span>
+                <div>
+                    <h3>SAMSRBS</h3>
+                    <p>Verified International Partner</p>
+                </div>
+            </a>
+        </div>
+        <p class="note">Any donation made without proper approval will NOT be accepted.</p>
+    </div>
+
+    <div class="footer">
+        © 2025 Mass Raising Kids — All Rights Reserved.
+    </div>
+
+</body>
+
+</html>
